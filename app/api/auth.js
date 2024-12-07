@@ -1,7 +1,7 @@
 import api from './interceptor';
 
 
-//basi api calls for a layout
+//example api calls, use try catch always
 export const userSignUp = async (formData) => {
     try {
         const respone = await api.post(`/register/`, formData);

@@ -14,7 +14,7 @@ const api = axios.create({
 });
 
 
-//add authToken to API call if exists
+//add authToken to API call if exists in localStorage
 api.interceptors.request.use(
   (config) => {
     const token = getToken();

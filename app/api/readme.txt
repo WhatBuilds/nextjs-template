@@ -1,8 +1,10 @@
-Step by step guide for API call
+Template for client side API call using tanstack/react query and axios 
 
-1. Add your API endpoint in the related file (create a new file if neccessary in api folder)
-eg: app/api/auth.js
+1. Add your API endpoint in the appropriate file
+(Create a new file in the api folder if necessary.)
+Example: app/api/auth.js
 
-2. import useMutationHandler in page and use no need to mantain state of onSuccess, onErroe, isLoading
-eg: app/hooks/useMutationHandler.js
+2. Import useMutationHandler in the page
+No need to manually manage the state of onSuccess, onError, or isLoading.
+Example: app/hooks/useMutationHandler.js
 
