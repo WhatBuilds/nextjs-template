@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { userSignIn } from "../api/auth";
 import { useMutationHandler } from "../hooks/useMutationHandler";
 
-export const page=()=>{
+function Page(){
     const router = useRouter();
 
 
@@ -43,3 +43,5 @@ export const page=()=>{
         </>
     )
 }
+
+export default Page
