@@ -15,7 +15,8 @@ function Providers({ children }) {
 
   return (
     <QueryClientProvider client={client}>
-        {/* <ToastContainer /> */} //Toast provider, no need to use multiple provider in layout
+        {/* Toast provider, no need to use multiple provider in layout */}
+        {/* <ToastContainer /> */} 
       {children}
     </QueryClientProvider>
   );
