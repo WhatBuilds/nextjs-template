@@ -1,8 +1,8 @@
 'use client';
 import React from "react";
 import { useRouter } from "next/navigation";
-import { userSignIn } from "../api/auth";
-import { useMutationHandler } from "../hooks/useMutationHandler";
+import { userSignIn } from "../../api/auth";
+import { useMutationHandler } from "../../hooks/useMutationHandler";
 
 function Page(){
     const router = useRouter();
