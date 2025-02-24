@@ -1,5 +1,6 @@
 import Image from "next/image";
 import "./globals.css";
+import Button from "../components/common/Button";
 
 export default function Home() {
   return (
@@ -15,6 +16,13 @@ export default function Home() {
       <h1 className="text-[80px] font-bold text-white">
         Next Js Template 
       </h1>
+      <Button props={{
+        label: "Schedule call",
+        icon:{
+          position: "left"
+        }
+      }} />
+      
       <p className="text-2xl font-bold text-white">Read the Rreadme file and follow the instructions and structure to start.</p>
     </div>
   );

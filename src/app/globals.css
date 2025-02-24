@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --background: #FFFFFF;
+    --foreground: #000000;
+}
 @layer utilities {
+
     .text-balance {
         text-wrap: balance;
     }

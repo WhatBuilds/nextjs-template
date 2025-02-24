@@ -7,7 +7,6 @@ import { useMutationHandler } from "../../hooks/useMutationHandler";
 function Page(){
     const router = useRouter();
 
-
     //example mutation function
     const loginMutation = useMutationHandler(userSignIn, {
         apiTitle:'Login',
@@ -39,7 +38,7 @@ function Page(){
 
     return (
         <>
-           hiii {/* Design with proper components */}
+          hi
         </>
     )
 }
