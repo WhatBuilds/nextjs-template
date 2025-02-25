@@ -1,26 +1,49 @@
 'use client';
-import React from 'react'
-import HeadingFive from '../heading/h5'
+import React, { useEffect, useState } from 'react'
 import BodyThree from '../description/Body3'
-import { RxCross2 } from "react-icons/rx";
+import HeadingFour from '../heading/h4';
+import { smartcls } from '@/src/utils/smartclass';
+import {motion, AnimatePresence} from "framer-motion"
 
-export default function Toast({title, description, action, duration=300, className}) {
-  const toastStyle = {
-    
+export default function Toast({ type, title, description, duration=5000, className}) {
+  const [isOpen, setIsOpne] = useState(true)
+
+  const defaultStyle = "fixed top-5 right-2 p-4 w-[calc(100vw-2rem)] md:max-w-[400px] flex items-center justify-between gap-3 bg-background rounded-md ";
+  const variants = {
+    default:
+        "bg-background text-forground",
+    error:
+        "bg-red-50 border-[3px] border-red-400",
+    success:
+        " bg-green-50 border-[3px] border-green-400", 
   }
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpne(false)
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [duration])
+  
+
   return (
-    <div className={` pr-10 fixed ${className} p-4 w-[calc(100vw-1rem)] md:max-w-[400px] bottom-5 right-2 flex items-center justify-between gap-3 bg-background rounded-md shadow-md toast-error`}>
-        <div className=' flex flex-col gap-1'>
-            <HeadingFive
-                text={title}
-            />
-            <BodyThree
-                text={description}
-            />
-        </div>
-        <button className=' absolute top-3 right-3 bg-foreground text-background border-2 border-background outline outline-1 outline-foreground rounded-md '><RxCross2 /></button>
-        <button className=' p-3 px-4  bg-card  rounded-md'>Cancel</button>
-    </div>
+    <AnimatePresence>
+      { isOpen && 
+        <motion.div
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ x: 60, opacity: 0 }}
+          transition={{ duration: 0.3 , ease: "easeInOut"}}
+        className={smartcls(className, variants[type], defaultStyle ) }
+      >
+          <div className=' flex flex-col gap-1'>
+              <HeadingFour>{title}</HeadingFour>
+              <BodyThree
+                  text={description}
+              />
+          </div>
+      </motion.div>}
+    </AnimatePresence>
   )
 }
