@@ -4,12 +4,6 @@ export const useMutationHandler = (mutationFn, options = {}) => {
   return useMutation({
     mutationFn,
     onSuccess: (data) => {
-      // Save authToken to localStorage if present in the response
-      if (data?.authToken) {
-        localStorage.setItem("authToken", data.authToken);
-      }
-
-      // Execute custom onSuccess if passed in options
       options?.onSuccess?.(data);
 
       // console if successMessage is provided
