@@ -1,0 +1,33 @@
+name: npm supply chain
+
+on:
+  pull_request:
+    paths:
+      - '**/package.json'
+      - '**/package-lock.json'
+      - '**/pnpm-lock.yaml'
+      - '**/yarn.lock'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install without running dependency scripts
+        run: npm ci --ignore-scripts
+      - name: Verify registry signatures and provenance
+        run: npm audit signatures
+      - name: Flag packages that declare install scripts
+        run: |
+          found=$(find node_modules -maxdepth 3 -name package.json \
+            -exec grep -lE '"(pre|post)?install"\s*:' {} + || true)
+          if [ -n "$found" ]; then
+            echo "::warning::Dependencies declare install scripts (review before allow-listing):"
+            echo "$found"
+          fi
