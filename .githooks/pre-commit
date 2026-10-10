@@ -1,0 +1,10 @@
+#!/bin/sh
+# Block risky npm dependency changes before they are committed.
+dir=$(cd "$(dirname "$0")/.." && pwd)
+if [ -f "$dir/scripts/npm-guard/check_dependency_changes.py" ]; then
+  script="$dir/scripts/npm-guard/check_dependency_changes.py"
+else
+  root=$(git rev-parse --show-toplevel 2>/dev/null)
+  script="$root/scripts/npm-guard/check_dependency_changes.py"
+fi
+exec python3 "$script" --staged

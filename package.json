@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "cross-env ANALYZE=true next build",
+    "dev": "node scripts/npm-guard/setup.js --hooks-only && next dev",
+    "build": "node scripts/npm-guard/setup.js --verify && cross-env ANALYZE=true next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "security:setup": "node scripts/npm-guard/setup.js",
+    "security:check": "node scripts/npm-guard/setup.js --check"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^15.1.6",
